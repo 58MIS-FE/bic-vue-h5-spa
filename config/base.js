@@ -29,7 +29,7 @@ module.exports = {
     // 静态资源根目录
     staticAssets: 'static',
     // 生成路径
-    publicPath: '${__beat.server.contextPath}/',
+    publicPath: '/',
     // 公用别名
     commonAlias: {
         Static: 'static',
@@ -49,27 +49,22 @@ module.exports = {
     library: [
         "axios",
         'vue',
-        "vuex",
         'vue-router'
     ],
     // 要引进外部资源库的页面(为空则全部引入)
-    libraryEntry: [],
+    libraryEntry: [
+        // 'index',
+        // 'page2'
+    ],
     //是否参看源码  参看'#source-map' 不参看：false
     sourceMap: false,
     // 本地开发代理,默认转发本地的1111
     proxy: {
-        '/apis': {
+        '/api': {
             target: 'http://192.168.187.192:8005',
             changeOrigin: true,
             pathRewrite: {
-                '^/apis': ''
-            }
-        },
-        '/gapis': {
-            target: 'http://10.252.19.116',
-            changeOrigin: true,
-            pathRewrite: {
-                '^/gapis': ''
+                '^/api': ''
             }
         }
     }
