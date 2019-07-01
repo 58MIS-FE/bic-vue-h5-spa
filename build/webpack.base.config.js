@@ -7,6 +7,7 @@ const
     path = require('path'),
     webpack = require('webpack'),
     Glob = require('glob').Glob;
+    const versionId=(+new Date())
 
 const
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
@@ -93,15 +94,16 @@ module.exports = {
 
     output: {
         path: config.buildRoot,
-        filename: pathJoin('js', '[name].[hash].js'),
-        chunkFilename: pathJoin('js', '[name].[hash].js'),
+        filename: pathJoin('js', '[name].js?') + versionId,
+        chunkFilename: pathJoin('js', '[name].js?') + versionId,
         publicPath: getCdnUrl()
     },
 
     resolve: {
         extensions: ['.js', '.vue', '.json', '.css'],
         alias: Object.assign(config.commonAlias, {
-            'vue': 'vue/dist/vue.js'
+            'vue': 'vue/dist/vue.js',
+            'swiper': 'swiper/dist/js/swiper.js' 
         })
     },
 
@@ -152,7 +154,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: pathJoin(config.staticAssets, 'img/[name].[hash:7].[ext]')
+                    name: pathJoin(config.staticAssets, 'img/[name].[ext]?') + versionId
                 }
             },
             {
@@ -160,14 +162,14 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: pathJoin(config.staticAssets, 'media/[name].[hash:7].[ext]')
+                    name: pathJoin(config.staticAssets, 'media/[name].[ext]?') + versionId
                 }
             },{
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: pathJoin(config.staticAssets, 'fonts/[name].[hash:7].[ext]')
+                    name: pathJoin(config.staticAssets, 'fonts/[name].[ext]?') + versionId
                 }
             },
         ]
@@ -176,7 +178,7 @@ module.exports = {
     plugins: [
         // 提取css
         new ExtractTextPlugin({
-            filename: pathJoin('css', '[name].[hash:8].css')
+            filename: pathJoin('css', '[name].css?') + versionId
         }),
 
         // 检测外部依赖包是否更新

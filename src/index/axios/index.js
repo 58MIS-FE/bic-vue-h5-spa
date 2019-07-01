@@ -1,9 +1,7 @@
 
 import axios from 'axios'
 import Qs from 'qs'
-let url = `/apis`;
-// let url = `/gapis`;
-// let url = `/wapis`;
+let url = `/api`;
 // let url ="http://192.168.187.192:8005/"
 
 process.env.NODE_ENV == 'development' ? url : url = ''

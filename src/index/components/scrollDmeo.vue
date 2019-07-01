@@ -60,7 +60,7 @@ export default {
                 this.myScrollDemo.on('pullingUp',() =>{ 
                     this.upTag = true;
                     console.log('上拉加载');
-                    this.nextPage();
+                    this.nextPage();   //请求新数据函数
                     
                    
                     // 定时器模拟请求数据
@@ -79,7 +79,7 @@ export default {
                 this.myScrollDemo.on('pullingDown',() =>{ 
                     this.downTag = true;
                     console.log('下拉刷新');
-                    this.getinitData();
+                    this.getinitData();   //下拉刷新执行函数
                     // 定时器模拟请求数据
                     // setTimeout(()=>{
                     //     this.arr = [1,2,3,4,5,6,7]
@@ -93,14 +93,9 @@ export default {
         },
         async nextPage() {
             // 传入参数为发送请求时携带的参数
-            // let res = await postMethods({
-            //     des: "发送post请求"
-            // });
-            console.log("上拉回来的结果");
-            for(let i = 0;i<5;i++){
-                this.arr.push(this.arr.length + 1);
-                console.log(this.arr);
-            }
+            let res = await postMethods({
+                des: "发送post请求"
+            });
             this.upTag = false;
             this.myScrollDemo.finishPullUp();
             this.myScrollDemo.refresh(); 
@@ -108,11 +103,9 @@ export default {
         },
         async getinitData() {
             // 传入参数为发送请求时携带的参数
-            // let res = await getMethods({
-            //     des: "发送gett请求"
-            // });
-            console.log("下拉回来的结果");
-            // this.arr = [1,2,3,4,5,6,7]
+            let res = await getMethods({
+                des: "发送get请求"
+            });
             this.downTag = false;
             this.myScrollDemo.finishPullDown();
             this.myScrollDemo.refresh();
