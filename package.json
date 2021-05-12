@@ -30,7 +30,7 @@
     "install": "^0.12.2",
     "lib-flexible": "^0.3.2",
     "px2rem-loader": "^0.1.9",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
